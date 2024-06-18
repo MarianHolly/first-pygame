@@ -4,9 +4,11 @@ pygame.init()
 screen = pygame.display.set_mode((800,400))
 pygame.display.set_caption('Runner')
 clock = pygame.time.Clock()
+test_font = pygame.font.render('font/Piseltype.ttf', 50)
 
 sky_surface = pygame.image.load('graphics/Sky.png')
 ground_surface = pygame.image.load('graphics/ground.png')
+text_surface = test_font.render('My Game')
 
 while True:
     for event in pygame.event.get():

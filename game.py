@@ -13,7 +13,7 @@ screen = pygame.display.set_mode((800,400))
 pygame.display.set_caption('Runner')
 clock = pygame.time.Clock()
 test_font = pygame.font.Font('font/Pixeltype.ttf', 50)
-game_active = True
+game_active = False
 start_time = 0
 
 sky_surface = pygame.image.load('graphics/Sky.png').convert()
@@ -28,6 +28,15 @@ snail_rect = snail_surf.get_rect(bottomright = (600,300))
 player_surf = pygame.image.load('graphics/player/player_walk_1.png').convert_alpha()
 player_rect = player_surf.get_rect(midbottom = (80,300))
 player_gravity = 0
+
+# Intro screen (import image, update with scale, create rectangle)
+player_stand = pygame.image.load('graphics/player/player_stand.png').convert_alpha()
+    # rotozoom(surface, angle, scale)
+player_stand = pygame.transform.rotozoom(player_stand,0,2)
+player_stand_rect = player_stand.get_rect(center = (400,200))
+    # name of game
+game_name = test_font.render('Pixel Runner',False,(111,196,169))
+game_name_rect = game_name.get_rect(center = (400,800))
 
 while True:
     for event in pygame.event.get():
@@ -71,7 +80,9 @@ while True:
         if snail_rect.colliderect(player_rect):
             game_active = False
     else:
-        screen.fill('Yellow')
+        screen.fill((94,129,162))
+        screen.blit(player_stand,player_stand_rect)
+        screen.blit(game_name,game_name_rect)
 
     pygame.display.update()
     clock.tick(60)
